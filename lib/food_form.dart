@@ -22,6 +22,9 @@ class FoodFormState extends State<FoodForm> {
   String _name;
   String _calories;
   bool _isVegan = false;
+  @override
+  // TODO: implement mounted
+  bool get mounted => super.mounted;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -121,7 +124,8 @@ class FoodFormState extends State<FoodForm> {
                         );
 
                         DatabaseProvider.db.insert(food).then(
-                              (storedFood) => BlocProvider.of<FoodBloc>(context).add(
+                              (storedFood) =>
+                                  BlocProvider.of<FoodBloc>(context).add(
                                 AddFood(storedFood),
                               ),
                             );
@@ -152,7 +156,8 @@ class FoodFormState extends State<FoodForm> {
                             );
 
                             DatabaseProvider.db.update(widget.food).then(
-                                  (storedFood) => BlocProvider.of<FoodBloc>(context).add(
+                                  (storedFood) =>
+                                      BlocProvider.of<FoodBloc>(context).add(
                                     UpdateFood(widget.foodIndex, food),
                                   ),
                                 );
